@@ -14,16 +14,22 @@ public class Chamado {
     private String titulo;
     private String observacoes;
 
+    private Tecnico tecnico;
+    private Cliente cliente;
+
     public Chamado() {
         super();
     }
 
-    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes) {
+    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico,
+            Cliente cliente) {
         this.id = id;
         this.prioridade = prioridade;
         this.status = status;
         this.titulo = titulo;
         this.observacoes = observacoes;
+        this.tecnico = tecnico;
+        this.cliente = cliente;
     }
 
     public Integer getId() {
@@ -66,6 +72,22 @@ public class Chamado {
         this.observacoes = observacoes;
     }
 
+    public Tecnico getTecnico() {
+        return tecnico;
+    }
+
+    public void setTecnico(Tecnico tecnico) {
+        this.tecnico = tecnico;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -90,7 +112,5 @@ public class Chamado {
             return false;
         return true;
     }
-
-    
 
 }

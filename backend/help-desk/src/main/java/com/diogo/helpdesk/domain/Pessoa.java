@@ -20,7 +20,7 @@ public abstract class Pessoa {
     private Tecnico tecnico;
     private Cliente cliente;
 
-    public Pessoa(){
+    public Pessoa() {
         addPerfil(Perfil.CLIENTE);
     }
 
@@ -120,7 +120,4 @@ public abstract class Pessoa {
         return true;
     }
 
-    
-    
-    
 }

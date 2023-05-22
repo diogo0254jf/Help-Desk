@@ -14,4 +14,12 @@ public class Cliente extends Pessoa {
         super(id, nome, cpf, email, senha);
     }
 
+    public List<Chamado> getChamados() {
+        return chamados;
+    }
+
+    public void setChamados(List<Chamado> chamados) {
+        this.chamados = chamados;
+    }
+
 }
