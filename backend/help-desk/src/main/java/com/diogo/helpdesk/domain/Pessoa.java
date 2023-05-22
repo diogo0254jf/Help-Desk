@@ -17,6 +17,7 @@ import javax.persistence.Id;
 
 import com.diogo.helpdesk.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public abstract class Pessoa implements Serializable {
@@ -40,7 +41,8 @@ public abstract class Pessoa implements Serializable {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataCriacao = LocalDate.now();
-
+    
+    @JsonIgnore
     private Tecnico tecnico;
     private Cliente cliente;
 

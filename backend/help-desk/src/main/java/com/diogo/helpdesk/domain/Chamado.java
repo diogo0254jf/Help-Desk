@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 import com.diogo.helpdesk.domain.enums.Prioridade;
 import com.diogo.helpdesk.domain.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Chamado implements Serializable {
@@ -33,10 +34,12 @@ public class Chamado implements Serializable {
     private String observacoes;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
     
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
