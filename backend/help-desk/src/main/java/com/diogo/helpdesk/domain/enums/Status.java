@@ -22,12 +22,12 @@ public enum Status {
         return this.descricao;
     }
 
-    public static Perfil toEnum(Integer cod) {
+    public static Status toEnum(Integer cod) {
         if (cod == null) {
             return null;
         }
 
-        for (Perfil x : Perfil.values()) {
+        for (Status x : Status.values()) {
             if (cod.equals(x.getCod())) {
                 return x;
             }

@@ -22,6 +22,7 @@ public enum Perfil {
     }
 
     public static Perfil toEnum(Integer cod) {
+        
         if (cod == null) {
             return null;
         }
