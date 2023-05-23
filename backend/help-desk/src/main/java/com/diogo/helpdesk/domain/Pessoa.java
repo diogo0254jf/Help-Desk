@@ -44,7 +44,7 @@ public abstract class Pessoa implements Serializable {
     
     @JsonIgnore
     private Tecnico tecnico;
-    private Cliente cliente;
+    // private Cliente cliente;
 
     public Pessoa() {
         addPerfil(Perfil.CLIENTE);

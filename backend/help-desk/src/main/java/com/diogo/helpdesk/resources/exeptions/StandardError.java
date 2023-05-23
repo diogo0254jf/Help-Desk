@@ -1,7 +1,6 @@
 package com.diogo.helpdesk.resources.exeptions;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 public class StandardError implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -63,5 +62,4 @@ public class StandardError implements Serializable {
         this.path = path;
     }
 
-    
 }
