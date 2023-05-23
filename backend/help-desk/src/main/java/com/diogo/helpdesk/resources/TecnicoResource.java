@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,7 @@ public class TecnicoResource {
     }
 
     @PostMapping
-    public ResponseEntity<Tecnico> create(@RequestBody TecnicoDTO objDTO) {
+    public ResponseEntity<Tecnico> create(@Valid @RequestBody TecnicoDTO objDTO) {
         objDTO.setId(null);
         validaPorCpfEEmail(objDTO);
         Tecnico newObj = service.create(objDTO);
