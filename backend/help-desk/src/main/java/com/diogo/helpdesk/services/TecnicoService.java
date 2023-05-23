@@ -33,7 +33,7 @@ public class TecnicoService {
 
     public Tecnico create(TecnicoDTO objDTO) {
         objDTO.setId(null);
-
+        
         Tecnico newObj = new Tecnico(objDTO);
         return tecnicoRepository.save(newObj);
     }
@@ -48,11 +48,11 @@ public class TecnicoService {
 
     public void delete(Integer id) {
         Tecnico obj = findById(id);
-        if (obj.getChamados().size() > 0) {
-            throw new DataIntegrityViolationException("Técnico possui ordens de serviço, não pode ser deletado");
+        if (obj.getId() != null) {
+            tecnicoRepository.deleteById(id);
         }
-        tecnicoRepository.deleteById(obj.getId());
     }
+
 
     private void validaPorCpfEEmail(TecnicoDTO newObj) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(newObj.getCpf());
