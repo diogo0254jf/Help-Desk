@@ -60,6 +60,6 @@ public class TecnicoResource {
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Integer> delete(@PathVariable Integer id) {
         service.delete(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 }
