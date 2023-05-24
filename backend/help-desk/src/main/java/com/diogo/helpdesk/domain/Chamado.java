@@ -10,10 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.diogo.helpdesk.domain.enums.Prioridade;
 import com.diogo.helpdesk.domain.enums.Status;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Chamado implements Serializable {
@@ -25,21 +24,19 @@ public class Chamado implements Serializable {
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataAbertura = LocalDate.now();
-
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataFechamento;
+
     private Prioridade prioridade;
     private Status status;
     private String titulo;
     private String observacoes;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "tecnico_id")
     private Tecnico tecnico;
-    
+
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
@@ -47,8 +44,8 @@ public class Chamado implements Serializable {
         super();
     }
 
-    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico,
-            Cliente cliente) {
+    public Chamado(Integer id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
+        super();
         this.id = id;
         this.prioridade = prioridade;
         this.status = status;
@@ -64,6 +61,22 @@ public class Chamado implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public LocalDate getDataAbertura() {
+        return dataAbertura;
+    }
+
+    public void setDataAbertura(LocalDate dataAbertura) {
+        this.dataAbertura = dataAbertura;
+    }
+
+    public LocalDate getDataFechamento() {
+        return dataFechamento;
+    }
+
+    public void setDataFechamento(LocalDate dataFechamento) {
+        this.dataFechamento = dataFechamento;
     }
 
     public Prioridade getPrioridade() {

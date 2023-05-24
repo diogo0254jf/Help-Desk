@@ -6,55 +6,54 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.diogo.helpdesk.domain.Cliente;
 import com.diogo.helpdesk.domain.Pessoa;
-import com.diogo.helpdesk.domain.Tecnico;
-import com.diogo.helpdesk.domain.dtos.TecnicoDTO;
+import com.diogo.helpdesk.domain.dtos.ClienteDTO;
+import com.diogo.helpdesk.repositories.ClienteRepository;
 import com.diogo.helpdesk.repositories.PessoaRepository;
-import com.diogo.helpdesk.repositories.TecnicoRepository;
 import com.diogo.helpdesk.services.exceptions.DataIntegrityViolationException;
 import com.diogo.helpdesk.services.exceptions.ObjectNotFoundExeption;
 
 @Service
-public class TecnicoService {
+public class ClienteService {
     @Autowired
-    private TecnicoRepository tecnicoRepository;
+    private ClienteRepository ClienteRepository;
 
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    public Tecnico findById(Integer id) {
-        Optional<Tecnico> obj = tecnicoRepository.findById(id);
+    public Cliente findById(Integer id) {
+        Optional<Cliente> obj = ClienteRepository.findById(id);
         return obj.orElseThrow(() -> new ObjectNotFoundExeption("Object Not Found"));
     }
 
-    public List<Tecnico> findAll() {
-        return tecnicoRepository.findAll();
+    public List<Cliente> findAll() {
+        return ClienteRepository.findAll();
     }
 
-    public Tecnico create(TecnicoDTO objDTO) {
+    public Cliente create(ClienteDTO objDTO) {
         objDTO.setId(null);
         validaPorCpfEEmail(objDTO);
-        Tecnico newObj = new Tecnico(objDTO);
-        return tecnicoRepository.save(newObj);
+        Cliente newObj = new Cliente(objDTO);
+        return ClienteRepository.save(newObj);
     }
 
-    public Tecnico update(Integer id, TecnicoDTO objDTO) {
+    public Cliente update(Integer id, ClienteDTO objDTO) {
         objDTO.setId(id);
-        Tecnico oldObj = findById(id);
+        Cliente oldObj = findById(id);
         validaPorCpfEEmail(objDTO);
-        oldObj = new Tecnico(objDTO);
-        return tecnicoRepository.save(oldObj);
+        oldObj = new Cliente(objDTO);
+        return ClienteRepository.save(oldObj);
     }
 
     public void delete(Integer id) {
-        Tecnico obj = findById(id);
+        Cliente obj = findById(id);
         if (obj.getId() != null) {
-            tecnicoRepository.deleteById(id);
+            ClienteRepository.deleteById(id);
         }
     }
 
-
-    private void validaPorCpfEEmail(TecnicoDTO newObj) {
+    private void validaPorCpfEEmail(ClienteDTO newObj) {
         Optional<Pessoa> obj = pessoaRepository.findByCpf(newObj.getCpf());
 
         if (obj.isPresent() && obj.get().getId() != newObj.getId()) {
