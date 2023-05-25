@@ -16,7 +16,7 @@ import com.diogo.helpdesk.domain.dtos.ChamadoDTO;
 import com.diogo.helpdesk.domain.enums.Prioridade;
 import com.diogo.helpdesk.domain.enums.Status;
 import com.diogo.helpdesk.repositories.ChamadoRepository;
-import com.diogo.helpdesk.services.exceptions.ObjectNotFoundExeption;
+import com.diogo.helpdesk.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ChamadoService {
@@ -29,7 +29,7 @@ public class ChamadoService {
 
     public Chamado findById(Integer id) {
         Optional<Chamado> obj = repository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundExeption("Chamado não encontrado"));
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Chamado não encontrado"));
     }
 
     public List<Chamado> findAll() {
@@ -48,24 +48,39 @@ public class ChamadoService {
 	}
 
     private Chamado newChamado(ChamadoDTO obj) {
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		System.out.println("TECNICO: " + obj.getTecnico());
 		Tecnico tecnico = tecnicoService.findById(obj.getTecnico());
+		System.out.println("CLIENTE: " + obj.getCliente());
 		Cliente cliente = clienteService.findById(obj.getCliente());
-		
+		System.out.println("A");
 		Chamado chamado = new Chamado();
+		System.out.println("B");
+		
 		if(obj.getId() != null) {
+			System.out.println("C");
 			chamado.setId(obj.getId());
 		}
 		
 		if(obj.getStatus().equals(2)) {
+			System.out.println("D");
 			chamado.setDataFechamento(LocalDate.now());
 		}
-		
+		System.out.println("TECNICO: " + chamado.getId());
 		chamado.setTecnico(tecnico);
+		System.out.println("TECNICO: " + chamado.getTecnico());
 		chamado.setCliente(cliente);
+		System.out.println("CLIENTE: " + chamado.getCliente());
 		chamado.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
+		System.out.println("PRIORIDADE: " + chamado.getPrioridade());
 		chamado.setStatus(Status.toEnum(obj.getStatus()));
+		System.out.println("STATUS: " + chamado.getStatus());
 		chamado.setTitulo(obj.getTitulo());
+		System.out.println("TITULO: " + chamado.getTitulo());
 		chamado.setObservacoes(obj.getObservacoes());
+		System.out.println("OBSERVACOES: " + chamado.getObservacoes());
+		System.out.println(chamado.getTecnico() + " " + chamado.getCliente() + " " + chamado.getPrioridade() + " " + chamado.getStatus() + " " + chamado.getTitulo() + " " + chamado.getObservacoes());
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n aa");
 		return chamado;
 	}
 }

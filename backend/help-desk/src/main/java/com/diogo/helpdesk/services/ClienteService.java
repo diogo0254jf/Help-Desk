@@ -12,30 +12,30 @@ import com.diogo.helpdesk.domain.dtos.ClienteDTO;
 import com.diogo.helpdesk.repositories.ClienteRepository;
 import com.diogo.helpdesk.repositories.PessoaRepository;
 import com.diogo.helpdesk.services.exceptions.DataIntegrityViolationException;
-import com.diogo.helpdesk.services.exceptions.ObjectNotFoundExeption;
+import com.diogo.helpdesk.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
     @Autowired
-    private ClienteRepository ClienteRepository;
+	private ClienteRepository repository;
 
     @Autowired
     private PessoaRepository pessoaRepository;
 
     public Cliente findById(Integer id) {
-        Optional<Cliente> obj = ClienteRepository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundExeption("Object Not Found"));
-    }
+		Optional<Cliente> obj = repository.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id));
+	}
 
     public List<Cliente> findAll() {
-        return ClienteRepository.findAll();
+        return repository.findAll();
     }
 
     public Cliente create(ClienteDTO objDTO) {
         objDTO.setId(null);
         validaPorCpfEEmail(objDTO);
         Cliente newObj = new Cliente(objDTO);
-        return ClienteRepository.save(newObj);
+        return repository.save(newObj);
     }
 
     public Cliente update(Integer id, ClienteDTO objDTO) {
@@ -43,13 +43,13 @@ public class ClienteService {
         Cliente oldObj = findById(id);
         validaPorCpfEEmail(objDTO);
         oldObj = new Cliente(objDTO);
-        return ClienteRepository.save(oldObj);
+        return repository.save(oldObj);
     }
 
     public void delete(Integer id) {
         Cliente obj = findById(id);
         if (obj.getId() != null) {
-            ClienteRepository.deleteById(id);
+            repository.deleteById(id);
         }
     }
 

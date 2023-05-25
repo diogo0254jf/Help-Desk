@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.diogo.helpdesk.services.exceptions.DataIntegrityViolationException;
-import com.diogo.helpdesk.services.exceptions.ObjectNotFoundExeption;
+import com.diogo.helpdesk.services.exceptions.ObjectNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-    @ExceptionHandler(ObjectNotFoundExeption.class)
-    public ResponseEntity<StandardError> objectNotFoundExeption(ObjectNotFoundExeption ex, HttpServletRequest request) {
+    @ExceptionHandler(ObjectNotFoundException.class)
+    public ResponseEntity<StandardError> objectNotFoundExeption(ObjectNotFoundException ex, HttpServletRequest request) {
         LocalDateTime timestamp = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         String date = timestamp.format(formatter);

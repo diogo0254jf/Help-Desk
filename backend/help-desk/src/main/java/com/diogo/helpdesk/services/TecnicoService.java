@@ -12,7 +12,7 @@ import com.diogo.helpdesk.domain.dtos.TecnicoDTO;
 import com.diogo.helpdesk.repositories.PessoaRepository;
 import com.diogo.helpdesk.repositories.TecnicoRepository;
 import com.diogo.helpdesk.services.exceptions.DataIntegrityViolationException;
-import com.diogo.helpdesk.services.exceptions.ObjectNotFoundExeption;
+import com.diogo.helpdesk.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class TecnicoService {
@@ -24,7 +24,7 @@ public class TecnicoService {
 
     public Tecnico findById(Integer id) {
         Optional<Tecnico> obj = tecnicoRepository.findById(id);
-        return obj.orElseThrow(() -> new ObjectNotFoundExeption("Object Not Found"));
+        return obj.orElseThrow(() -> new ObjectNotFoundException("Object Not Found"));
     }
 
     public List<Tecnico> findAll() {
