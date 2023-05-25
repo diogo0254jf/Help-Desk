@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.diogo.helpdesk.domain.Pessoa;
 import com.diogo.helpdesk.repositories.PessoaRepository;
-import com.diogo.helpdesk.securite.UserSS;
+import com.diogo.helpdesk.security.UserSS;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

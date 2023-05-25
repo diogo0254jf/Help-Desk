@@ -1,4 +1,4 @@
-package com.diogo.helpdesk.securite;
+package com.diogo.helpdesk.security;
 
 import java.io.IOException;
 import java.util.ArrayList;
