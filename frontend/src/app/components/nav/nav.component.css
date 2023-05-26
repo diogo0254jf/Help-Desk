@@ -36,3 +36,9 @@ img {
     rgba(0, 212, 255, 1) 100%
   );
 }
+
+
+.imagemMenu:hover {
+  background-color: #fff;
+  color: #000;
+}
