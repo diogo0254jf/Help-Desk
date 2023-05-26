@@ -39,6 +39,6 @@ img {
 
 
 .imagemMenu:hover {
-  background-color: #fff;
-  color: #000;
+  
+  transition: 1s;
 }
