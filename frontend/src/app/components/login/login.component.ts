@@ -20,19 +20,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-
-
-  
   logar() {
-    this.creds.email = '';
-    this.creds.senha = '';
+    this.creds.email = "";
+    this.creds.senha = "";
     this.toast.error("Usuário e/ou senha inválidos", "Algo deu errado 😬");
   }
 
   validaCampos(): boolean {
-    if (this.email.valid && this.senha.valid) {
-      return true;
-    }
-    return false;
+    return this.email.valid && this.senha.valid;
   }
 }
